@@ -1,1 +1,3 @@
 /node_modules
+# Ignorar todos los archivos en node_modules/
+node_modules/
