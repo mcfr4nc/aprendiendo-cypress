@@ -60,7 +60,7 @@ describe('Test de cypress', { testIsolation: false }, () => {
   })
 
   // Realiza un drag and drop de un elemento a otro
-  it('should drag and drop', () => {
+  it('DragAndDrop con relleno de form falla por que esta planificado', () => {
       
         cy.get('button').contains('Book this room').click()
         cy.get('button').contains('Next').click()
@@ -72,5 +72,19 @@ describe('Test de cypress', { testIsolation: false }, () => {
         cy.llenarYEnviarFormulario(data)  
       cy.get('.col-sm-4 > .btn-outline-primary').click()
     })
+})
+it('DragAndDrop con relleno de form pasa', () => {
+      
+  cy.get('button').contains('Book this room').click()
+  cy.get('button').contains('Next').click()
+  cy.get('button').contains('Next').click()
+  cy.get('button').contains('Next').click()
+  cy.get(':nth-child(2) > .rbc-row-content > :nth-child(1) > :nth-child(1) > .rbc-button-link').should('be.visible').wait(1000)
+  cy.get(':nth-child(2) > .rbc-row-content > :nth-child(1) > :nth-child(1) > .rbc-button-link').should('be.visible').wait(1000)
+cy.dragAndDrop(':nth-child(5) > .rbc-row-bg > :nth-child(1)', ':nth-child(5) > .rbc-row-bg > :nth-child(3)')
+cy.fixture('data').then((data) => {
+  cy.llenarYEnviarFormulario(data)  
+cy.get('.col-sm-4 > .btn-outline-primary').click()
+})
 })
 })
